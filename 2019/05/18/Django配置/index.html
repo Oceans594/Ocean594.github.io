@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content>
+  <meta name="author" content="liaowenhu">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="Django配置">
+  <meta property="og:description" content="python 学习之路">
+  <meta property="og:site_name" content="Mr.L Blogs">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="http://yoursite.com">
+  
+    <link rel="alternate" href="/atom.xml" title="Mr.L Blogs" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Mr.L Blogs</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">Django配置</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/<your-github-username>">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By liaowenhu</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-05-18</span>
+            <span class="time">19:58:12</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h1 id="Django-2-2-配置"><a href="#Django-2-2-配置" class="headerlink" title="Django 2.2 配置"></a>Django 2.2 配置</h1><h2 id="基于Windows10-Anaconda5-2-0"><a href="#基于Windows10-Anaconda5-2-0" class="headerlink" title="基于Windows10 Anaconda5.2.0"></a>基于Windows10 Anaconda5.2.0</h2><ul>
+<li><p>创建虚拟环境</p>
+<p>  专门为Django项目创建一个虚拟环境，避免与其他项目发生冲突。打开Anaconda Prompt，输入以下命令：</p>
+<blockquote>
+<p>conda create -n Django_env</p>
+</blockquote>
+<p>  完成创建之后输入：</p>
+<blockquote>
+<p>conda env list</p>
+</blockquote>
+<p>  来查看我们所有的环境，此时可以看到两个环境：base和我们新建的Django_env。</p>
+<p>  如果想要删除该环境，请使用：</p>
+<blockquote>
+<p>conda remove -n Django_env –all</p>
+</blockquote>
+</li>
+<li><p>安装Django</p>
+<p>  使用以下命令，激活该环境：</p>
+</li>
+</ul>
+<pre><code>&gt; activate Django_env
+
+此时可以看到左边括号里显示工作环境为Django_env,然后安装Django（不加版本号默认为最新版本）：
+
+&gt; conda install django
+
+或者指定版本号：
+
+&gt; conda install django==2.0
+
+安装完成后使用以下命令来查看该环境下的所有Package：
+
+&gt; conda list
+</code></pre><ul>
+<li><p>创建项目</p>
+<p>  进入想要创建项目的文件夹，执行创建项目命令：</p>
+<blockquote>
+<p>cd D:\Django_code</p>
+</blockquote>
+<blockquote>
+<p>django-admin startproject Django_frame .</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="更改默认数据库为MySQL"><a href="#更改默认数据库为MySQL" class="headerlink" title="更改默认数据库为MySQL"></a>更改默认数据库为MySQL</h2><ul>
+<li><p>在当前环境中安装pymysql包：</p>
+<blockquote>
+<p>conda install pymysql</p>
+</blockquote>
+<blockquote>
+<p>conda list</p>
+</blockquote>
+</li>
+<li><p>在项目<strong>init</strong>.py中添加以下代码</p>
+<blockquote>
+<p>import pymysql</p>
+</blockquote>
+<blockquote>
+<p>pymysql.install_as_MySQLdb()</p>
+</blockquote>
+</li>
+<li><p>更改settings.py中DATABASE项</p>
+<blockquote>
+<p>DATABASES = {</p>
+</blockquote>
+<blockquote>
+<p>‘default’: {</p>
+</blockquote>
+<blockquote>
+<p>‘ENGINE’: ‘django.db.backends.mysql’,</p>
+</blockquote>
+<blockquote>
+<p>‘NAME’: ‘django_db’,</p>
+</blockquote>
+<blockquote>
+<p>‘USER’: ‘root’,</p>
+</blockquote>
+<blockquote>
+<p>‘PASSWORD’: ‘your password’,</p>
+</blockquote>
+<blockquote>
+<p>‘HOST’: ‘127.0.0.1’,</p>
+</blockquote>
+<blockquote>
+<p>‘PORT’: ‘3306’,</p>
+</blockquote>
+<blockquote>
+<p>}</p>
+<p>}</p>
+</blockquote>
+</li>
+<li><p>数据迁移</p>
+<blockquote>
+<p>python manage.py makemigrations</p>
+</blockquote>
+<blockquote>
+<p>python manage.py migrate</p>
+</blockquote>
+<p>  如果报KeyError：255 是因为数据库版本原因，更新你的pymysql包就可以解决：</p>
+<blockquote>
+<p>pip install –upgrade pymysql</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="可能会遇到的问题"><a href="#可能会遇到的问题" class="headerlink" title="可能会遇到的问题"></a>可能会遇到的问题</h2><p><em>如果安装的版本不是最新的Django</em></p>
+<p><em>则使用pip更新以下Django版本即可</em></p>
+<p><em>如果遇到Cannot open ‘D:\xxxxxx\xxxx\xxx.pip-script.py’</em></p>
+<p><em>则是pip安装的问题</em></p>
+<p><em>使用以下命令即可</em></p>
+<blockquote>
+<p>pip install –upgrade pip</p>
+</blockquote>
+<blockquote>
+<p>easy_install pip</p>
+</blockquote>
+<p><em>更新完django之后按照上面步骤重新创建项目，更改默认数据库之后，启动django可能会报以下错误</em></p>
+<p><em>django.core.exceptions.ImproperlyConfigured: mysqlclient 1.3.13 or newer is required; you have 0<br>.9.3.
+</em></p>
+<p><em>找到Python安装路劲下的Python36-32\Lib\site-packages\django\db\backends\mysql\base.py文件</em></p>
+<p><em>将文件中的如下代码注释</em></p>
+<blockquote>
+<p>if version &lt; (1, 3, 3):</p>
+</blockquote>
+<blockquote>
+<p>raise ImproperlyConfigured(“mysqlclient 1.3.3 or newer is required; you have %s” % Database.<strong>version</strong>)</p>
+</blockquote>
+<p><em>再次运行可能会遇到</em></p>
+<p><em>AttributeError: ‘str’ object has no attribute ‘decode’</em></p>
+<p><em>将该文件decode修改为encode即可</em></p>
+<h2 id="django显示中文以及更改为北京时间"><a href="#django显示中文以及更改为北京时间" class="headerlink" title="django显示中文以及更改为北京时间"></a>django显示中文以及更改为北京时间</h2><p>将settings.py中的</p>
+<blockquote>
+<p>LANGUAGE_CODE = ‘en-us’</p>
+</blockquote>
+<blockquote>
+<p>TIME_ZONE = ‘UTC’</p>
+</blockquote>
+<p>修改为</p>
+<blockquote>
+<p>LANGUAGE_CODE = ‘zh-hans’</p>
+</blockquote>
+<blockquote>
+<p>TIME_ZONE = ‘Asia/Shanghai’</p>
+</blockquote>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        </p><p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
