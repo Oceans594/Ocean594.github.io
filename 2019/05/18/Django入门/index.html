@@ -250,7 +250,7 @@ models.py文件跟数据库操作相关。
 </li>
 <li><p>定义模板</p>
 <p>  打开templates/bookinfo，创建index.html文件</p>
-<p>  ‘’’<code>&lt;!DOCTYPE html&gt;<br>  <html lang="en"><br>  <head><meta name="generator" content="Hexo 3.8.0"><br>  <meta charset="UTF-8"><br>  <title>这是标题</title><br>  </head><br>  <body><br>  <h2>图书列表</h2><br>  <ul></ul></body></html></code></p>
+<p>  ‘’’&lt;!DOCTYPE html&gt;<br>  <html lang="en"><br>  <head><meta name="generator" content="Hexo 3.8.0"><br>  <meta charset="UTF-8"><br>  <title>这是标题</title><br>  </head><br>  <body><br>  <h2>图书列表</h2><br>  <ul></ul></body></html></p>
   
 <p>  </p></li></ul><br>  <br>  ‘’’<p></p>
 
@@ -262,14 +262,11 @@ models.py文件跟数据库操作相关。
 <p>  为了使用方便快捷，使用redirct重定向回首页。</p>
 </li>
 <li><p>在bookinfo的URL列表中添加delete函数</p>
-<blockquote>
-<p> urlpatterns = [</p>
-<pre><code>path(&apos;index/&apos;, views.index),
-re_path(&apos;^delete(\d+)$&apos;, views.delete),
-</code></pre><p>  ]</p>
-</blockquote>
 </li>
 
+<blockquote>
+<p> urlpatterns = [<br>path(‘index/‘, views.index),<br>re_path(‘^delete(\d+)$’, views.delete),<br>]</p>
+</blockquote>
 <p>重启服务器得到我们想要的结果。</p>
 <p><em>注意</em></p>
 <p><em>可能会遇到的问题</em></p>
