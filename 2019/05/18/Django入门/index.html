@@ -231,7 +231,7 @@ models.py文件跟数据库操作相关。
 </ol>
 </li>
 </ul>
-<p><em>注意</em></p>
+<p><em>注意:</em></p>
 <p>在Django2.0之后的版本中，默认不使用正则匹配URLS，如果想用正则进行匹配，则需要导入模块。</p>
 <blockquote>
 <p>from django.urls import re_path</p>
@@ -251,7 +251,7 @@ models.py文件跟数据库操作相关。
 <li><p>定义模板</p>
 <p>  打开templates/bookinfo，创建index.html文件</p>
 <blockquote>
-<p>&lt;!DOCTYPE html&gt;</p>
+<p>  &lt;!DOCTYPE html&gt;</p>
 <pre><code>&lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
     &lt;meta charset=&quot;UTF-8&quot;&gt;
@@ -277,7 +277,7 @@ models.py文件跟数据库操作相关。
 </li>
 <li><p>在bookinfo的URL列表中添加delete函数</p>
 <blockquote>
-<p>urlpatterns = [</p>
+<p>  urlpatterns = [</p>
 <pre><code>path(&apos;index/&apos;, views.index),
 re_path(&apos;^delete(\d+)$&apos;, views.delete),
 </code></pre><p>  ]</p>
@@ -300,10 +300,9 @@ re_path(&apos;^delete(\d+)$&apos;, views.delete),
 </blockquote>
 </li>
 </ul>
-<pre><code>在系统设置中，区域和语言-&gt;管理语言设置-&gt;更改系统区域设置-&gt;将使用Unicode UTF-8 提供全球语言支持 打钩
+<p>在系统设置中，区域和语言-&gt;管理语言设置-&gt;更改系统区域设置-&gt;将使用Unicode UTF-8 提供全球语言支持 打钩</p>
+<p><em>使用windows系统做开发踩的大坑坑，所以搞开发还是Linux</em></p>
 
-*使用windows系统做开发踩的大坑坑，所以搞开发还是Linux*
-</code></pre>
   </article>
   <div class="random-toc-area">
   <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
