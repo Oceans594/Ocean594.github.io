@@ -250,11 +250,9 @@ models.py文件跟数据库操作相关。
 </li>
 <li><p>定义模板</p>
 <p>  打开templates/bookinfo，创建index.html文件</p>
-<blockquote>
-<p> &lt;!DOCTYPE html&gt;</p>
-  <html lang="en"><br>  <head><meta name="generator" content="Hexo 3.8.0"><br>  <meta charset="UTF-8"><br>  &lt;title&amp;gt这是标题<br>  </head><br>  <body><br>  &lt;h2&amp;gt图书列表&amp;lt/h2&gt;<br>  &lt;ul&amp;gt<br>  <br>  </body></html></blockquote></li></ul><br>  <br>  
-
-
+<p>  &lt;!DOCTYPE html&gt;</p>
+  <html lang="en"><br>  <head><meta name="generator" content="Hexo 3.8.0"><br>  <meta charset="UTF-8"><br>  &lt;title&amp;gt这是标题<br>  </head><br>  <body><br>  <h2>图书列表</h2><br>  <ul><br>  <br>  </ul><br>  </body><br>  </html>
+</li>
 <li><p>添加删除功能</p>
 <p>  在views.py中添加delete函数</p>
 <blockquote>
@@ -264,7 +262,7 @@ models.py文件跟数据库操作相关。
 </li>
 <li><p>在bookinfo的URL列表中添加delete函数</p>
 </li>
-
+</ul>
 <blockquote>
 <p> urlpatterns = [<br>path(‘index/‘, views.index),<br>re_path(‘^delete(\d+)$’, views.delete),<br>]</p>
 </blockquote>
@@ -293,7 +291,7 @@ models.py文件跟数据库操作相关。
   <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
   <div class="random-toc">
     <h2>目录</h2>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Django入门"><span class="toc-text">Django入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建应用"><span class="toc-text">创建应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设计模型"><span class="toc-text">设计模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#设计一个图书类"><span class="toc-text">设计一个图书类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设计一个图书详情类"><span class="toc-text">设计一个图书详情类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据表的增删改查"><span class="toc-text">数据表的增删改查</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#管理站点"><span class="toc-text">管理站点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#视图及URL"><span class="toc-text">视图及URL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模板"><span class="toc-text">模板</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Django入门"><span class="toc-text">Django入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建应用"><span class="toc-text">创建应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设计模型"><span class="toc-text">设计模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#设计一个图书类"><span class="toc-text">设计一个图书类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设计一个图书详情类"><span class="toc-text">设计一个图书详情类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据表的增删改查"><span class="toc-text">数据表的增删改查</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#管理站点"><span class="toc-text">管理站点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#视图及URL"><span class="toc-text">视图及URL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模板"><span class="toc-text">模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">图书列表</span></a></li></ol></li></ol>
   </div>
 </div>
 
