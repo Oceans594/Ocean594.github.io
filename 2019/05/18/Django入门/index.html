@@ -222,7 +222,9 @@ models.py文件跟数据库操作相关。
 </blockquote>
 </li>
 <li><p>打开项目文件夹中的urls.py文件,为urlpatters列表添加我们创建的urls。</p>
-<p>‘’’from django.contrib import admin<br>from django.urls import path<br>from django.conf.urls import include<br>urlpatterns = [<br>path(‘admin/‘, admin.site.urls),<br>path(‘index/‘, include(‘bookinfo.urls’)),<br>]’’’</p>
+<blockquote>
+<p> from django.contrib import admin<br>from django.urls import path<br>from django.conf.urls import include<br>urlpatterns = [<br>path(‘admin/‘, admin.site.urls),<br>path(‘index/‘, include(‘bookinfo.urls’)),<br>]</p>
+</blockquote>
 </li>
 <li><p>在浏览器中输入127.0.0.1/index/则显示“这是首页”。</p>
 </li>
