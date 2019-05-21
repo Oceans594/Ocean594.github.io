@@ -250,10 +250,11 @@ models.py文件跟数据库操作相关。
 </li>
 <li><p>定义模板</p>
 <p>  打开templates/bookinfo，创建index.html文件</p>
-<p>  ‘’’&lt;!DOCTYPE html&gt;<br>  <html lang="en"><br>  <head><meta name="generator" content="Hexo 3.8.0"><br>  <meta charset="UTF-8"><br>  <title>这是标题</title><br>  </head><br>  <body><br>  <h2>图书列表</h2><br>  <ul></ul></body></html></p>
-  
-<p>  </p></li></ul><br>  <br>  ‘’’<p></p>
-
+<blockquote>
+<p> &lt;!DOCTYPE html&gt;</p>
+  <html lang="en"><br>  <head><meta name="generator" content="Hexo 3.8.0"><br>  <meta charset="UTF-8"><br>  <title>这是标题</title><br>  </head><br>  <body><br>  <h2>图书列表</h2><br>  <ul><br>  <br>  </ul><br>  </body><br>  </html>
+</blockquote>
+</li>
 <li><p>添加删除功能</p>
 <p>  在views.py中添加delete函数</p>
 <blockquote>
@@ -263,7 +264,7 @@ models.py文件跟数据库操作相关。
 </li>
 <li><p>在bookinfo的URL列表中添加delete函数</p>
 </li>
-
+</ul>
 <blockquote>
 <p> urlpatterns = [<br>path(‘index/‘, views.index),<br>re_path(‘^delete(\d+)$’, views.delete),<br>]</p>
 </blockquote>
