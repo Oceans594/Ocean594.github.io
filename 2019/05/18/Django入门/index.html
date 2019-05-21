@@ -251,10 +251,16 @@ models.py文件跟数据库操作相关。
 <li><p>定义模板</p>
 <p>  打开templates/bookinfo，创建index.html文件</p>
 <blockquote>
-<p> &lt;!DOCTYPE html&gt;</p>
-  <html lang="en"><br>  <head><meta name="generator" content="Hexo 3.8.0"><br>         <meta charset="UTF-8"><br>         <title>这是标题</title><br>  </head><br>  <body><br>  <h2>图书列表</h2><br>  <ul><br>         <br>  </ul><br>  </body><br>  </html>
-</blockquote>
-</li>
+<p> <code>&lt;!DOCTYPE html&gt;<br>  <html lang="en"><br>  <head><meta name="generator" content="Hexo 3.8.0"></head></html></code></p>
+<pre><code>&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;title&gt;这是标题&lt;/title&gt;
+</code></pre><p>  <br>  <body><br>  <h2>图书列表</h2><br>  <ul></ul></body></p>
+<pre><code>{% for book in books %}
+		       <li>{{ book.book_name }}--<a href="/delete{{ book.id }}">删除</a></li>
+		   {% endfor %}
+</code></pre><p>  </p></blockquote></li></ul><br>  <br>  <br>  <p></p>
+
+
 <li><p>添加删除功能</p>
 <p>  在views.py中添加delete函数</p>
 <blockquote>
@@ -270,7 +276,7 @@ re_path(&apos;^delete(\d+)$&apos;, views.delete),
 </code></pre><p>  ]</p>
 </blockquote>
 </li>
-</ul>
+
 <p>重启服务器得到我们想要的结果。</p>
 <p><em>注意</em></p>
 <p><em>可能会遇到的问题</em></p>
