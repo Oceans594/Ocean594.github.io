@@ -205,7 +205,7 @@ models.py文件跟数据库操作相关。
 <p>from django.contrib import admin<br>from django.contrib import admin<br>from bookinfo.models import BookInfo,BookDetail<br>class BookInfoAdmin(admin.ModelAdmin):<br>    list_display = [‘id’,’book_name’,’book_pub_data’]<br>class BookDetailAdmin(admin.ModelAdmin):<br>    list_display = [‘id’,’book_price’,’book_auther’,’book_pages’]<br>admin.site.register(BookInfo, BookInfoAdmin)<br>admin.site.register(BookDetail, BookDetailAdmin)</p>
 </blockquote>
 <p>重启服务器，得到我们想要的结果。</p>
-<h2 id="视图及URL"><a href="#视图及URL" class="headerlink" title="视图及URL"></a>视图及URL</h2><p>后台管理页面做好了，我就需要做公共访问的页面了，而刚才我们输入的‘<a href="http://127.0.0.1/admin/’就是一个url请求，服务器收到这个请求之后会有一个处理，并返回。这个过程就是我们由视图来完成。" target="_blank" rel="noopener">http://127.0.0.1/admin/’就是一个url请求，服务器收到这个请求之后会有一个处理，并返回。这个过程就是我们由视图来完成。</a></p>
+<h2 id="视图及URL"><a href="#视图及URL" class="headerlink" title="视图及URL"></a>视图及URL</h2><p>后台管理页面做好了，我就需要做公共访问的页面了，而刚才我们输入的127.0.0.1/admin/就是一个url请求，服务器收到这个请求之后会有一个处理，并返回。这个过程就是我们由视图来完成。</p>
 <ul>
 <li><p>定义视图函数</p>
 <p>  视图函数被定义在views.py中，首先我们定义一个index，即首页。</p>
@@ -222,17 +222,9 @@ models.py文件跟数据库操作相关。
 </blockquote>
 </li>
 <li><p>打开项目文件夹中的urls.py文件,为urlpatters列表添加我们创建的urls。</p>
-<blockquote>
-<p>from django.contrib import admin<br>from django.urls import path<br>from django.conf.urls import include<br>urlpatterns = [</p>
-<pre><code>path(&apos;admin/&apos;, admin.site.urls),
-path(&apos;index/&apos;, include(&apos;bookinfo.urls&apos;))
-</code></pre><p>]</p>
-</blockquote>
+<p>‘’’from django.contrib import admin<br>from django.urls import path<br>from django.conf.urls import include<br>urlpatterns = [<br>path(‘admin/‘, admin.site.urls),<br>path(‘index/‘, include(‘bookinfo.urls’)),<br>]’’’</p>
 </li>
-<li><p>在浏览器中输入</p>
-<blockquote>
-<p><a href="http://127.0.0.1/index/" target="_blank" rel="noopener">http://127.0.0.1/index/</a><br>则显示“这是首页”。</p>
-</blockquote>
+<li><p>在浏览器中输入127.0.0.1/index/则显示“这是首页”。</p>
 </li>
 </ol>
 </li>
