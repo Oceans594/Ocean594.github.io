@@ -18,13 +18,11 @@
   
   
   
-    <meta name="description" content="Django 2.2 配置基于Windows10 Anaconda5.2.0
-创建虚拟环境
-  专门为Django项目创建一个虚拟环境，避免与其他项目发生冲突。打开Anaconda Prompt，输入以下命令：
-  ‘ conda create -n Django_env’
-  完成创建之后输入：
-  ‘ conda env list’
-  来查看我们所有的环境，此时可以看到两个环境：bas...">
+    <meta name="description" content="Django 2.2 配置基于Windows10 Anaconda5.2.0创建虚拟环境专门为Django项目创建一个虚拟环境，避免与其他项目发生冲突。打开Anaconda Prompt，输入以下命令：###
+python conda create -n Django_env
+完成创建之后输入：###
+conda env list
+来查看我们所有的环境，此时可以看到两个环境：base和我们新...">
   
   <title>Django配置 [ Mr.L Blogs ]</title>
   
@@ -46,7 +44,7 @@
 <div class="side-navigate hide-area">
   
     <div class="item prev">
-      <a href="/2019/05/18/Django入门/">
+      <a href="/2019/06/02/Django入门/">
         <div class="item-icon"></div>
       </a>
       <div class="item-title">
@@ -54,15 +52,6 @@
       </div>
     </div>
   
-  
-    <div class="item next">
-      <a href="/2019/05/18/hello-world/">
-        <div class="item-icon"></div>
-      </a>
-      <div class="item-title">
-        Hello World
-      </div>
-    </div>
   
 </div>
 <div id="outer-container" class="hide-area">
@@ -127,129 +116,124 @@
     <p class="page-title-sub">
       <span id="post-title-date">撰写于 2019-05-18</span>
       
-        <span id="post-title-updated">修改于 2019-05-18</span>
+        <span id="post-title-updated">修改于 2019-07-22</span>
       
       
+      <span id="post-title-categories">分类
+      
+      
+        
+        
+        <a href="/categories/Django从入门到精通/">Django从入门到精通</a>
+      
+      </span>
+      
+      
+      <span id="post-title-tags">
+      标签
+      
+      
+        
+        
+        <a href="/tags/Django/">Django</a>
+      
+        
+          /
+        
+        
+        <a href="/tags/Python/">Python</a>
+      
+      </span>
       
     </p>
     
-    <h1 id="Django-2-2-配置"><a href="#Django-2-2-配置" class="headerlink" title="Django 2.2 配置"></a>Django 2.2 配置</h1><h2 id="基于Windows10-Anaconda5-2-0"><a href="#基于Windows10-Anaconda5-2-0" class="headerlink" title="基于Windows10 Anaconda5.2.0"></a>基于Windows10 Anaconda5.2.0</h2><ul>
-<li><p>创建虚拟环境</p>
-<p>  专门为Django项目创建一个虚拟环境，避免与其他项目发生冲突。打开Anaconda Prompt，输入以下命令：</p>
-<p>  ‘ conda create -n Django_env’</p>
-<p>  完成创建之后输入：</p>
-<p>  ‘ conda env list’</p>
-<p>  来查看我们所有的环境，此时可以看到两个环境：base和我们新建的Django_env。</p>
-<p>  如果想要删除该环境，请使用：</p>
-<p>  ‘ conda remove -n Django_env –all’</p>
-</li>
-<li><p>安装Django</p>
-<p>  使用以下命令，激活该环境：</p>
-<blockquote>
-<p>activate Django_env</p>
-</blockquote>
-<p>  此时可以看到左边括号里显示工作环境为Django_env,然后安装Django（不加版本号默认为最新版本）：</p>
-<blockquote>
-<p>conda install django</p>
-</blockquote>
-<p>  或者指定版本号：</p>
-<blockquote>
-<p>conda install django==2.0</p>
-</blockquote>
-<p>  安装完成后使用以下命令来查看该环境下的所有Package：</p>
-<blockquote>
-<p>conda list</p>
-</blockquote>
-</li>
-<li><p>创建项目</p>
-<p>  进入想要创建项目的文件夹，执行创建项目命令：</p>
-<p>  ‘’’ cd D:\Django_code</p>
-<p>   django-admin startproject Django_frame .’’’</p>
-</li>
-</ul>
-<h2 id="更改默认数据库为MySQL"><a href="#更改默认数据库为MySQL" class="headerlink" title="更改默认数据库为MySQL"></a>更改默认数据库为MySQL</h2><ul>
-<li><p>在当前环境中安装pymysql包：</p>
-<p>  ‘’’conda install pymysql</p>
-<p>  conda list’’’</p>
-</li>
-<li><p>在项目<strong>init</strong>.py中添加以下代码</p>
-<p>  ‘’’ import pymysql</p>
-<p>   pymysql.install_as_MySQLdb()’’’</p>
-</li>
-<li><p>更改settings.py中DATABASE项<br>  ‘’’<br>  DATABASES = {</p>
-<p>  ‘default’: {</p>
-<p>   ‘ENGINE’: ‘django.db.backends.mysql’,</p>
-<p>   ‘NAME’: ‘django_db’,</p>
-<p>   ‘USER’: ‘root’,</p>
-<p>   ‘PASSWORD’: ‘your password’,</p>
-<p>   ‘HOST’: ‘127.0.0.1’,</p>
-<p>   ‘PORT’: ‘3306’,</p>
-<p>   }</p>
-<p>   }’’’</p>
-</li>
-<li><p>数据迁移</p>
-<p>  ‘python manage.py makemigrations’</p>
-<p>  ‘python manage.py migrate’</p>
-<p>  如果报KeyError：255 是因为数据库版本原因，更新你的pymysql包就可以解决：</p>
-<p>  ‘pip install –upgrade pymysql’</p>
-</li>
-</ul>
-<h2 id="可能会遇到的问题"><a href="#可能会遇到的问题" class="headerlink" title="可能会遇到的问题"></a>可能会遇到的问题</h2><p><em>如果安装的版本不是最新的Django</em></p>
-<p><em>则使用pip更新以下Django版本即可</em></p>
-<p><em>如果遇到Cannot open ‘D:\xxxxxx\xxxx\xxx.pip-script.py’</em></p>
-<p><em>则是pip安装的问题</em></p>
-<p><em>使用以下命令即可</em></p>
-<p>‘ pip install –upgrade pip’</p>
-<p>‘ easy_install pip’</p>
-<p><em>更新完django之后按照上面步骤重新创建项目，更改默认数据库之后，启动django可能会报以下错误</em></p>
-<p><em>django.core.exceptions.ImproperlyConfigured: mysqlclient 1.3.13 or newer is required; you have 0<br>.9.3.
-</em></p>
-<p><em>找到Python安装路劲下的Python36-32\Lib\site-packages\django\db\backends\mysql\base.py文件</em></p>
-<p><em>将文件中的如下代码注释</em></p>
-<blockquote>
-<p>if version &lt; (1, 3, 3):</p>
-</blockquote>
-<blockquote>
-<p>raise ImproperlyConfigured(“mysqlclient 1.3.3 or newer is required; you have %s” % Database.<strong>version</strong>)</p>
-</blockquote>
-<p><em>再次运行可能会遇到</em></p>
-<p><em>AttributeError: ‘str’ object has no attribute ‘decode’</em></p>
-<p><em>将该文件decode修改为encode即可</em></p>
-<h2 id="django显示中文以及更改为北京时间"><a href="#django显示中文以及更改为北京时间" class="headerlink" title="django显示中文以及更改为北京时间"></a>django显示中文以及更改为北京时间</h2><p>将settings.py中的</p>
-<blockquote>
-<p>LANGUAGE_CODE = ‘en-us’</p>
-</blockquote>
-<blockquote>
-<p>TIME_ZONE = ‘UTC’</p>
-</blockquote>
-<p>修改为</p>
-<blockquote>
-<p>LANGUAGE_CODE = ‘zh-hans’</p>
-</blockquote>
-<blockquote>
-<p>TIME_ZONE = ‘Asia/Shanghai’</p>
-</blockquote>
+    <h1 id="Django-2-2-配置"><a href="#Django-2-2-配置" class="headerlink" title="Django 2.2 配置"></a>Django 2.2 配置</h1><h2 id="基于Windows10-Anaconda5-2-0"><a href="#基于Windows10-Anaconda5-2-0" class="headerlink" title="基于Windows10 Anaconda5.2.0"></a>基于Windows10 Anaconda5.2.0</h2><h3 id="创建虚拟环境"><a href="#创建虚拟环境" class="headerlink" title="创建虚拟环境"></a>创建虚拟环境</h3><p>专门为Django项目创建一个虚拟环境，避免与其他项目发生冲突。打开Anaconda Prompt，输入以下命令：###</p>
+<pre><code>python conda create -n Django_env
+</code></pre><p>完成创建之后输入：###</p>
+<pre><code>conda env list
+</code></pre><p>来查看我们所有的环境，此时可以看到两个环境：base和我们新建的Django_env。</p>
+<p>如果想要删除该环境，请使用：###</p>
+<pre><code>conda remove -n Django_env --all
+</code></pre><h3 id="安装Django"><a href="#安装Django" class="headerlink" title="安装Django"></a>安装Django</h3><p>使用以下命令，激活该环境：</p>
+<pre><code>activate Django_env
+</code></pre><p>此时可以看到左边括号里显示工作环境为Django_env,然后安装Django（不加版本号默认为最新版本）：###</p>
+<pre><code>conda install django
+</code></pre><p>或者指定版本号：</p>
+<pre><code>conda install django==2.0
+</code></pre><p>安装完成后使用以下命令来查看该环境下的所有Package：</p>
+<pre><code>conda list
+</code></pre><p>创建项目</p>
+<p>进入想要创建项目的文件夹，执行创建项目命令：</p>
+<pre><code>cd D:/Django_code
 
+django-admin startproject Django_frame .
+</code></pre><h2 id="更改默认数据库为MySQL"><a href="#更改默认数据库为MySQL" class="headerlink" title="更改默认数据库为MySQL"></a>更改默认数据库为MySQL</h2><p>在当前环境中安装pymysql包：</p>
+<pre><code>conda install pymysql
+
+conda list
+</code></pre><p>在项目<strong>init</strong>.py中添加以下代码</p>
+<pre><code>import pymysql
+
+pymysql.install_as_MySQLdb()
+</code></pre><p>更改settings.py中DATABASE项</p>
+<pre><code>DATABASES = {
+&apos;default&apos;: {
+&apos;ENGINE&apos;: &apos;django.db.backends.mysql&apos;,
+&apos;NAME&apos;: &apos;django_db&apos;,
+&apos;USER&apos;: &apos;root&apos;,
+&apos;PASSWORD&apos;: &apos;your password&apos;,
+&apos;HOST&apos;: &apos;127.0.0.1&apos;,
+&apos;PORT&apos;: &apos;3306&apos;,
+    }
+}
+</code></pre><p>数据迁移</p>
+<pre><code>python manage.py makemigrations
+
+python manage.py migrate
+</code></pre><p><em>如果报KeyError：255 是因为数据库版本原因，更新你的pymysql包就可以解决：</em></p>
+<pre><code>pip install --upgrade pymysql
+</code></pre><h2 id="可能会遇到的问题"><a href="#可能会遇到的问题" class="headerlink" title="可能会遇到的问题"></a>可能会遇到的问题</h2><p>如果安装的版本不是最新的Django则使用pip更新下Django版本即可*</p>
+<p>如果遇到Cannot open ‘D:\xxxxxx\xxxx\xxx.pip-script.py’则是pip安装的问题*</p>
+<p>使用以下命令即可</p>
+<pre><code>pip install --upgrade pip
+
+easy_install pip
+</code></pre><p>更新完django之后按照上面步骤重新创建项目，更改默认数据库之后，启动django可能会报以下错误</p>
+<pre><code>django.core.exceptions.ImproperlyConfigured: mysqlclient 1.3.13 or newer is required; you have 0.9.3.
+</code></pre><p>找到Python安装路劲下的Python36-32\Lib\site-packages\django\db\backends\mysql\base.py文件</p>
+<p>将文件中的如下代码注释</p>
+<pre><code>if version &lt; (1, 3, 3):
+    raise ImproperlyConfigured(&quot;mysqlclient 1.3.3 or newer is required; you have %s&quot; % Database.__version__)
+</code></pre><p>再次运行可能会遇到</p>
+<pre><code>AttributeError: &apos;str&apos; object has no attribute &apos;decode&apos;
+</code></pre><p>将该文件decode修改为encode即可</p>
+<h2 id="django显示中文以及更改为北京时间"><a href="#django显示中文以及更改为北京时间" class="headerlink" title="django显示中文以及更改为北京时间"></a>django显示中文以及更改为北京时间</h2><p>将settings.py中的</p>
+<pre><code>LANGUAGE_CODE = &apos;en-us&apos;
+
+TIME_ZONE = &apos;UTC&apos;
+</code></pre><p>修改为</p>
+<pre><code>LANGUAGE_CODE = &apos;zh-hans&apos;
+
+TIME_ZONE = &apos;Asia/Shanghai&apos;
+</code></pre>
   </article>
   <div class="random-toc-area">
   <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
   <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
   <div class="random-toc">
     <h2>目录</h2>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Django-2-2-配置"><span class="toc-text">Django 2.2 配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基于Windows10-Anaconda5-2-0"><span class="toc-text">基于Windows10 Anaconda5.2.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更改默认数据库为MySQL"><span class="toc-text">更改默认数据库为MySQL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可能会遇到的问题"><span class="toc-text">可能会遇到的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#django显示中文以及更改为北京时间"><span class="toc-text">django显示中文以及更改为北京时间</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Django-2-2-配置"><span class="toc-text">Django 2.2 配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基于Windows10-Anaconda5-2-0"><span class="toc-text">基于Windows10 Anaconda5.2.0</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建虚拟环境"><span class="toc-text">创建虚拟环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装Django"><span class="toc-text">安装Django</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更改默认数据库为MySQL"><span class="toc-text">更改默认数据库为MySQL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可能会遇到的问题"><span class="toc-text">可能会遇到的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#django显示中文以及更改为北京时间"><span class="toc-text">django显示中文以及更改为北京时间</span></a></li></ol></li></ol>
   </div>
 </div>
 
   
 <nav id="pagination">
   
-    <a href="/2019/05/18/Django入门/" class="prev">&larr; 上一篇 Django入门</a>
+    <a href="/2019/06/02/Django入门/" class="prev">&larr; 上一篇 Django入门</a>
   
 
   
 
-  
-    <a href="/2019/05/18/hello-world/" class="next">下一篇 Hello World &rarr;</a>
   
 </nav>
 

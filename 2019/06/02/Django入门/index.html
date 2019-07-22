@@ -1,0 +1,498 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Mr.L">
+  
+  
+  <meta name="keywords" content="前端,python,arm">
+  
+  
+  
+    <meta name="description" content="Django入门创建应用使用一个应用开发一个业务模块，这里创建一个图书信息的应用
+python manage.py startapp bookinfo
+init.py是一个空文件，表示当前目录booktest可以当作一个- python包使用。tests.py文件用于开发测试用例，在实际开发中会有专门的测试人员，这个事情不需要我们来做。models.py文件跟数据库操作相关。views.py...">
+  
+  <title>Django入门 [ Mr.L Blogs ]</title>
+  
+  
+    <link rel="shortcut icon" href="/Radiation Warning.png">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+    <div class="item prev">
+      <a href="/2019/07/22/ango-Nginx-Uwsgi部署/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        Django+Nginx+Uwsgi部署
+      </div>
+    </div>
+  
+  
+    <div class="item next">
+      <a href="/2019/05/18/Django配置/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        Django配置
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onclick="openUserCard()">
+          <img id="avatar" src="https://avatars2.githubusercontent.com/u/39737574?s=460&v=4">
+          <div id="homelink">Mr.L Blogs</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="/index.html">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/archives">Archives</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/about">About</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="https://github.com/Oceans594">Github</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  
+
+  <article id="post">
+    <h1>Django入门</h1>
+    <p class="page-title-sub">
+      <span id="post-title-date">撰写于 2019-06-02</span>
+      
+        <span id="post-title-updated">修改于 2019-07-22</span>
+      
+      
+      <span id="post-title-categories">分类
+      
+      
+        
+        
+        <a href="/categories/Django从入门到精通/">Django从入门到精通</a>
+      
+      </span>
+      
+      
+      <span id="post-title-tags">
+      标签
+      
+      
+        
+        
+        <a href="/tags/Django/">Django</a>
+      
+        
+          /
+        
+        
+        <a href="/tags/Python/">Python</a>
+      
+      </span>
+      
+    </p>
+    
+    <h1 id="Django入门"><a href="#Django入门" class="headerlink" title="Django入门"></a>Django入门</h1><h2 id="创建应用"><a href="#创建应用" class="headerlink" title="创建应用"></a>创建应用</h2><p>使用一个应用开发一个业务模块，这里创建一个图书信息的应用</p>
+<pre><code>python manage.py startapp bookinfo
+</code></pre><p><em>init.py</em>是一个空文件，表示当前目录booktest可以当作一个- python包使用。<br>tests.py文件用于开发测试用例，在实际开发中会有专门的测试人员，这个事情不需要我们来做。<br>models.py文件跟数据库操作相关。<br>views.py文件跟接收浏览器请求，进行处理，返回页面相关。<br>admin.py文件跟网站的后台管理相关。<br>创建完成之后在settings.py的 INSTALLED_APPS中添加bookinfo的应用。</p>
+<pre><code>INSTALLED_APPS = [
+    &apos;django.contrib.admin&apos;,
+    &apos;django.contrib.auth&apos;,
+    &apos;django.contrib.contenttypes&apos;,
+    &apos;django.contrib.sessions&apos;,
+    &apos;django.contrib.messages&apos;,
+    &apos;django.contrib.staticfiles&apos;,
+    &apos;bookinfo&apos;,
+</code></pre><h2 id="设计模型"><a href="#设计模型" class="headerlink" title="设计模型"></a>设计模型</h2><h3 id="设计一个图书类"><a href="#设计一个图书类" class="headerlink" title="设计一个图书类"></a>设计一个图书类</h3><p>模型类的定义在models.py中，继承自models.Model类。在创建是不需要定义主键，在表生成时django会为我们自动添加主键，并且自动增长。</p>
+<pre><code>from django.db import models
+class BookInfo(models.Model):
+book_name = models.CharField(max_length=20)
+book_auther = models.CharField(max_length=20)
+book_pub_date = models.DateField()
+</code></pre><p>设计完模型类之后进行数据迁移：</p>
+<pre><code>python manage.py makemigrations
+
+python manage.py migrate
+</code></pre><p>执行第一条语句之后再我们创建的应用里的migrations里会多一个0001_initial.py的迁移文件，打开后会看到django为我们自动添加了id列，并且自动增长。</p>
+<p>执行第二条语句之后会将该迁移文件中的属性，在数据库中生成对应表，在mysql中使用以下语句查看表结构：</p>
+<pre><code>desc bookinfo_bookinfo;
+</code></pre><h3 id="设计一个图书详情类"><a href="#设计一个图书详情类" class="headerlink" title="设计一个图书详情类"></a>设计一个图书详情类</h3><p>步骤同图书类的创建</p>
+<pre><code>class BookDetail(models.Model):
+    book_price = models.FloatField()
+    book_auther = models.CharField(max_length=20)
+    book_pages = models.IntegerField()
+</code></pre><p>迁移文件</p>
+<pre><code>python manage.py makemigrations
+
+python manage.py migrate
+</code></pre><h3 id="数据表的增删改查"><a href="#数据表的增删改查" class="headerlink" title="数据表的增删改查"></a>数据表的增删改查</h3><p>完成数据表的迁移之后，接下来对数据进行操作</p>
+<pre><code>python manage.py shell
+</code></pre><p>首先导入bookinfo/modules中的类，新建图书对象</p>
+<pre><code>from datetime import date
+from booktest.models import BookInfo,BookDetail
+book=BookInfo()
+book.book_name=&quot;Django入门&quot;
+book.book_pub_date=date(1991,1,31)
+book.save()
+</code></pre><p>使用book.delete()删除对象<br>使用BookInfo.objects.all()获取全部信息<br>重新对类属性赋值即为修改</p>
+<h2 id="管理站点"><a href="#管理站点" class="headerlink" title="管理站点"></a>管理站点</h2><p>通常再Django项目中都需要进行后台管理，Django能够根据定义的模型类自动生成管理页面。<br>首先创建一个超级用户</p>
+<pre><code>python manage.py createsuperuser
+</code></pre><p>输入用户名，邮箱密码之后，创建成功。在后台中我们并没有注册模型，所以再admin.py中注册模型类。</p>
+<pre><code>from django.contrib import admin
+from bookinfo.models import BookInfo,BookDetail
+
+admin.site.register(BookInfo)
+admin.site.register(BookDetail)
+</code></pre><p>启动django服务，登陆127.0.0.1：8000/admin进入后台管理</p>
+<pre><code>python manage.py runserver
+</code></pre><p>启动后会发现，列表信息为BookInfo objects，需要点进去才能看到图书信息，这样不方便管理，所以我们自定义列表显示为我们的图书信息。</p>
+<p>将admin.py更新为以下代码：</p>
+<pre><code>from django.contrib import admin
+from django.contrib import admin
+from bookinfo.models import BookInfo,BookDetail
+class BookInfoAdmin(admin.ModelAdmin):
+    list_display = [&apos;id&apos;,&apos;book_name&apos;,&apos;book_pub_data&apos;]
+class BookDetailAdmin(admin.ModelAdmin):
+    list_display = [&apos;id&apos;,&apos;book_price&apos;,&apos;book_auther&apos;,&apos;book_pages&apos;]
+admin.site.register(BookInfo, BookInfoAdmin)
+admin.site.register(BookDetail, BookDetailAdmin)
+</code></pre><p>重启服务器，得到我们想要的结果。</p>
+<h2 id="视图及URL"><a href="#视图及URL" class="headerlink" title="视图及URL"></a>视图及URL</h2><p>后台管理页面做好了，我就需要做公共访问的页面了，而刚才我们输入的<a href="http://127.0.0.1/admin/就是一个url请求，服务器收到这个请求之后会有一个处理，并返回。这个过程就是我们由视图来完成。" target="_blank" rel="noopener">http://127.0.0.1/admin/就是一个url请求，服务器收到这个请求之后会有一个处理，并返回。这个过程就是我们由视图来完成。</a></p>
+<p>定义视图函数</p>
+<pre><code>视图函数被定义在views.py中，首先我们定义一个index，即首页。
+
+from django.shortcuts import render
+from django.http import HttpResponse
+def index(request):
+    return HttpResponse(&quot;这是首页&quot;)
+</code></pre><p>配置URLs</p>
+<p>请求者在浏览器中输入URL，向服务器发送请求，服务器会在编写好的URLconf中逐条匹配，如果匹配成功则返回对应的视图函数，若没有匹配成功，则返回404 Page Not Found。*</p>
+<ol>
+<li><p>首先我们在bookinfo下新建urls.py文件，定义一个列表，用来匹配views.py中的视图函数。</p>
+<pre><code>from django.urls import path
+from bookinfo import views
+urlpatterns = [
+    path(&apos;&apos;, views.index),
+]
+</code></pre></li>
+<li><p>打开项目文件夹中的urls.py文件,为urlpatters列表添加我们创建的urls。</p>
+<pre><code>from django.contrib import admin
+from django.urls import path
+from django.conf.urls import include
+urlpatterns = {
+    path(&apos;admin/&apos;, admin.site.urls),
+    path(&apos;index/&apos;, include(&apos;bookinfo.urls&apos;))
+}
+</code></pre></li>
+<li><p>在浏览器中输入<a href="http://127.0.0.1/index/则显示“这是首页”。" target="_blank" rel="noopener">http://127.0.0.1/index/则显示“这是首页”。</a></p>
+</li>
+</ol>
+<p><strong>注意</strong></p>
+<p>在Django2.0之后的版本中，默认不使用正则匹配URLS，如果想用正则进行匹配，则需要导入模块。</p>
+<pre><code>from django.urls import re_path
+</code></pre><p>由re_path替换path即可。</p>
+<h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><p>当我们想要让我们的页面变得更加好看，我们就需要用到模板文件了。</p>
+<p>创建模板</p>
+<p>在项目文件夹中新建文件夹templates,创建一个与应用同名的文件夹，名为bookinfo。</p>
+<p>设置模板路径</p>
+<pre><code>在settings.py文件中设置TEMPLATES的DIRS值。
+
+&apos;DIRS&apos;: [os.path.join(BASE_DIR, &apos;templates&apos;)]
+</code></pre><p>定义模板</p>
+<p>打开templates/bookinfo，创建index.html文件</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+    &lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;UTF-8&quot;&gt;
+        &lt;title&gt;这是标题&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;h2&gt;图书列表&lt;/h2&gt;
+    &lt;ul&gt;
+        {% for book in books %}
+		        <li>{{ book.book_name }}--<a href="/delete{{ book.id }}">删除</a></li>
+		    {% endfor %}
+    &lt;/ul&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+</code></pre><p><strong>添加删除功能</strong></p>
+<p>在views.py中添加delete函数</p>
+<pre><code>&gt;def delete(request, book_id):
+book = BookInfo.objects.get(id=book_id)
+book.delete()
+return redirect(&apos;/index&apos;)
+</code></pre><p>为了使用方便快捷，使用redirct重定向回首页。</p>
+<p>在bookinfo的URL列表中添加delete函数</p>
+<pre><code>urlpatterns = [
+    path(&apos;index/&apos;, views.index),
+    re_path(&apos;^delete(\d+)$&apos;, views.delete),
+]
+</code></pre><p>重启服务器得到我们想要的结果。</p>
+<p>###可能会遇到的问题###</p>
+<p><em>页面显示不出来，第一步看后台报错信息</em></p>
+<p>编码问题/后台管理问题</p>
+<p><em>后台报错</em></p>
+<pre><code>UnicodeDecodeError: &apos;gbk&apos; codec can&apos;t decode byte 0xa6 in position 9737: ill
+</code></pre><p><em>页面显示</em>    </p>
+<pre><code>A server error occurred. Please contact the administrator
+
+
+在系统设置中，区域和语言-&gt;管理语言设置-&gt;更改系统区域设置-&gt;将使用Unicode UTF-8 提供全球语言支持 打钩
+
+*使用windows系统做开发踩的大坑坑，所以搞开发还是Linux*
+</code></pre>
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
+  <div class="random-toc">
+    <h2>目录</h2>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Django入门"><span class="toc-text">Django入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建应用"><span class="toc-text">创建应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设计模型"><span class="toc-text">设计模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#设计一个图书类"><span class="toc-text">设计一个图书类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设计一个图书详情类"><span class="toc-text">设计一个图书详情类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据表的增删改查"><span class="toc-text">数据表的增删改查</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#管理站点"><span class="toc-text">管理站点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#视图及URL"><span class="toc-text">视图及URL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模板"><span class="toc-text">模板</span></a></li></ol></li></ol>
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+    <a href="/2019/07/22/ango-Nginx-Uwsgi部署/" class="prev">&larr; 上一篇 Django+Nginx+Uwsgi部署</a>
+  
+
+  
+
+  
+    <a href="/2019/05/18/Django配置/" class="next">下一篇 Django配置 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Mr.L using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="https://avatars2.githubusercontent.com/u/39737574?s=460&v=4">
+    <p id="description">人生苦短，我用python</p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/Oceans594">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="https://www.zhihu.com/people/ocean-84-57-30/activities">
+        
+          <i class="icon iconfont zhihu">&#xe60b;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+  <script>
+if(isTriggerAnalytics) {
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?http://tongji.baidu.com/web/welcome/login";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+}
+</script>
+
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["flash"],"timer":true,"delay":1500000,"shuffle":true,"count":12};
+var unsplashConfig = {"gravity":"center"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+
+var backgroundColor = "34495E";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+
